@@ -4,6 +4,7 @@
 #include <conio.h>
 #include "ChiliString.h"
 #include "Stack.h"
+#include "Element.h"
 
 void test1()
 {
@@ -163,23 +164,31 @@ void test8()
 
 int main()
 {
-	_CrtSetReportMode( _CRT_WARN,_CRTDBG_MODE_FILE );
-	_CrtSetReportFile( _CRT_WARN,_CRTDBG_FILE_STDERR );
-	_CrtSetReportMode( _CRT_ERROR,_CRTDBG_MODE_FILE );
-	_CrtSetReportFile( _CRT_ERROR,_CRTDBG_FILE_STDERR );
-	_CrtSetReportMode( _CRT_ASSERT,_CRTDBG_MODE_FILE );
-	_CrtSetReportFile( _CRT_ASSERT,_CRTDBG_FILE_STDERR );
-	
-	test1();
-	test2();
-	test3();
-	test4();
-	test5();
-	test6();
-	test7();
-	test8();
+	//_CrtSetReportMode( _CRT_WARN,_CRTDBG_MODE_FILE );
+	//_CrtSetReportFile( _CRT_WARN,_CRTDBG_FILE_STDERR );
+	//_CrtSetReportMode( _CRT_ERROR,_CRTDBG_MODE_FILE );
+	//_CrtSetReportFile( _CRT_ERROR,_CRTDBG_FILE_STDERR );
+	//_CrtSetReportMode( _CRT_ASSERT,_CRTDBG_MODE_FILE );
+	//_CrtSetReportFile( _CRT_ASSERT,_CRTDBG_FILE_STDERR );
+	//
+	//test1();
+	//test2();
+	//test3();
+	//test4();
+	//test5();
+	//test6();
+	//test7();
+	//test8();
 
-	_CrtDumpMemoryLeaks();
+	//_CrtDumpMemoryLeaks();
+
+	Element* e1 = new Element;
+	e1->SetData(42);
+	Element* e2 = new Element;
+	e2->SetData(12);
+	e1->SetNext(e2);
+
+
 	while( !_kbhit() );
 	return 0;
 }
