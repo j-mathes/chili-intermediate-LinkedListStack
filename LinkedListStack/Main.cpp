@@ -1,6 +1,6 @@
-#define _CRTDBG_MAP_ALLOC  
-#include <stdlib.h>  
-#include <crtdbg.h>  
+#define _CRTDBG_MAP_ALLOC	// include for memory leak detection
+#include <stdlib.h>			// include for memory leak detection
+#include <crtdbg.h>			// include for memory leak detection
 #include <conio.h>
 #include "ChiliString.h"
 #include "Stack.h"
@@ -162,32 +162,49 @@ void test8()
 	}
 }
 
+void test9()
+{
+	Stack s;
+	s.Push(5);
+	s.Push(3);
+
+	{
+		Stack s2;
+		s2.Push(1234);
+		s2 = s;
+		s2.Pop();
+	}
+
+	if (s.Size() == 2 && s.Pop() == 3)
+	{
+		chili::print("    Test 9 passed!\n");
+	}
+	else
+	{
+		chili::print("*** Test 9 failed!\n");
+	}
+}
+
 int main()
 {
-	//_CrtSetReportMode( _CRT_WARN,_CRTDBG_MODE_FILE );
-	//_CrtSetReportFile( _CRT_WARN,_CRTDBG_FILE_STDERR );
-	//_CrtSetReportMode( _CRT_ERROR,_CRTDBG_MODE_FILE );
-	//_CrtSetReportFile( _CRT_ERROR,_CRTDBG_FILE_STDERR );
-	//_CrtSetReportMode( _CRT_ASSERT,_CRTDBG_MODE_FILE );
-	//_CrtSetReportFile( _CRT_ASSERT,_CRTDBG_FILE_STDERR );
-	//
-	//test1();
-	//test2();
-	//test3();
-	//test4();
-	//test5();
-	//test6();
-	//test7();
-	//test8();
+	_CrtSetReportMode( _CRT_WARN,_CRTDBG_MODE_FILE );		// include for memory leak detection - Sets output
+	_CrtSetReportFile( _CRT_WARN,_CRTDBG_FILE_STDERR );		// include for memory leak detection - Sets output
+	_CrtSetReportMode( _CRT_ERROR,_CRTDBG_MODE_FILE );		// include for memory leak detection - Sets output
+	_CrtSetReportFile( _CRT_ERROR,_CRTDBG_FILE_STDERR );	// include for memory leak detection - Sets output
+	_CrtSetReportMode( _CRT_ASSERT,_CRTDBG_MODE_FILE );		// include for memory leak detection - Sets output
+	_CrtSetReportFile( _CRT_ASSERT,_CRTDBG_FILE_STDERR );	// include for memory leak detection - Sets output
+	
+	test1();
+	test2();
+	test3();
+	test4();
+	test5();
+	test6();
+	test7();
+	test8();
+	test9();
 
-	//_CrtDumpMemoryLeaks();
-
-	Element* e1 = new Element;
-	e1->SetData(42);
-	Element* e2 = new Element;
-	e2->SetData(12);
-	e1->SetNext(e2);
-
+	_CrtDumpMemoryLeaks();		// include for memory leak detection
 
 	while( !_kbhit() );
 	return 0;
